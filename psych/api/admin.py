@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import profileDetail, Title, Question, Answer, ok_Answer
+from .models import profileDetail, Title, Question, Answer, ok_Answer,Results
 # Register your models here.
 @admin.register(profileDetail)
 class profDetailAdmin(admin.ModelAdmin):
@@ -19,5 +19,8 @@ class ansAdmin(admin.ModelAdmin):
 
 @admin.register(ok_Answer)
 class ok_ansAdmin(admin.ModelAdmin):
-    list_display = ('question', 'ok_answer')
+    list_display = ('quesId', 'ok_answer')
 
+@admin.register(Results)
+class Result(admin.ModelAdmin):
+    list_display = ('id', 'test_name', 'test_result', 'user')

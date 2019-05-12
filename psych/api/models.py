@@ -63,11 +63,12 @@ class Question(models.Model):
         return '{}: {}, {}'.format(self.id, self.question, self.title)
 
 class ok_Answer(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    title = models.ForeignKey(Title, on_delete=models.CASCADE, default=1, related_name='okanswers')
+    quesId = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='quesId')
     ok_answer = models.CharField(max_length=200)
 
     def __str__(self):
-        return '{}: {}, {}'.format(self.id, self.ok_answer, self.question)
+        return '{}: {}, {}'.format(self.id, self.ok_answer, self.quesId)
 
 class Answer(models.Model):
     answer = models.CharField(max_length=1000)
@@ -75,3 +76,8 @@ class Answer(models.Model):
 
     def __str__(self):
         return '{}.{}: {}'.format(self.question, self.id, self.answer)
+
+class Results(models.Model):
+    test_name = models.CharField(max_length=100)
+    test_result = models.IntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1, related_name='results')

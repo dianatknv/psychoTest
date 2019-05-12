@@ -5,8 +5,8 @@ from rest_framework import mixins
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
-from ..models import profileDetail, Title, Answer, ok_Answer, Question
-from ..serializers import ProfileDetailSerializer, TitleSerializer,TitleSerializer2, QuestionSerializer, AnswerSerializer, Ok_AnswerSerializer
+from ..models import profileDetail, Title, Answer, ok_Answer, Question, User, Results
+from ..serializers import ProfileDetailSerializer,ResultSerializer, OkAnswerSerializer, TitleSerializer,TitleSerializer2, QuestionSerializer, UserSerializer, AnswerSerializer
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -22,12 +22,22 @@ class profiledetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProfileDetailSerializer
     permission_classes = (IsAuthenticated, )
 
+class okanswer(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Title.objects.all()
+    serializer_class = OkAnswerSerializer
 
+class results(generics.ListCreateAPIView):
+    queryset = Results.objects.all()
+    serializer_class = ResultSerializer
 
 class title(generics.ListAPIView):
     queryset = Title.objects.all()
     serializer_class = TitleSerializer
     permission_classes = (IsAuthenticated, )
+
+class user_reg(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 class detailtitle(generics.RetrieveUpdateDestroyAPIView):
