@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProviderService } from '../shared/services/provider.service';
-import { IQuestions, ITitle, IAnswer, IAuthResponse, IOkAnswer, IOkAnswers, IResult } from '../shared/models/models';
+import { ProviderService } from '../../shared/services/provider.service';
+import { IQuestions, ITitle, IAnswer, IAuthResponse, IOkAnswer, IOkAnswers, IResult } from '../../shared/models/models';
 import { Title } from '@angular/platform-browser';
 import { AlertPromise } from 'selenium-webdriver';
 import { UrlSerializer } from '@angular/router';
@@ -229,9 +229,7 @@ hideModalBack(){
         this.isLogged = true;
         document.getElementById("section_window").style.display="none";
       });
-    
     }
-
   }
 
   register(){
